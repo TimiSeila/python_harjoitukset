@@ -1,3 +1,3 @@
-# Namegame
+## Namegame
 
-## Timi Seila
+# Timi Seila

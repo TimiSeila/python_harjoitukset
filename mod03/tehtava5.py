@@ -5,6 +5,14 @@ nails = input("Anna naulat: ")
 bullets = input("Anna luodit: ")
 BULLET_WEIGHT_G = 13.3
 
+try:
+    float(leivs)
+    float(nails)
+    float(bullets)
+except:
+    print("Jokin määristä virheellinen")
+    exit()
+
 leivs_in_grams = float(leivs) * 20 * 32 * BULLET_WEIGHT_G
 nails_in_grams = float(nails) * 32 * BULLET_WEIGHT_G
 bullets_in_grams = float(bullets) * BULLET_WEIGHT_G
