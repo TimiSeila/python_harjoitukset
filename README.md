@@ -13,8 +13,13 @@ Tein tehtävät: 2
 ## Moduuli 3
 
 Tein tehtävät: 1, 2, 3, 4, 5, 6\
-Tein Projektit: 1
+Tein projektit: 1
 
 ## Moduuli 4
 
 Tein tehtävät: 1, 2, 3, 4
+
+## Moduuli 5
+
+Tein tehtävät: 1, 2, 3, 4, 5, 6\
+Tein projektit: 2
