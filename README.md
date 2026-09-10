@@ -23,3 +23,7 @@ Tein tehtävät: 1, 2, 3, 4
 
 Tein tehtävät: 1, 2, 3, 4, 5, 6\
 Tein projektit: 2
+
+## Moduuli 7
+
+Tein projektit: 3
