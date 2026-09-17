@@ -5,7 +5,7 @@ class Car:
         self.registration_number = registration_number
         self.max_speed = max_speed
         self.current_speed = 0
-        self.travelled_distance = 2000
+        self.travelled_distance = 0
 
     def accelerate(self, change_of_speed):
         self.current_speed += change_of_speed
