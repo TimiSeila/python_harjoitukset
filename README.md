@@ -32,3 +32,11 @@ Tein tehtävät: 1, 2, 3, 4
 
 Tein tehtävät: 1, 2, 3, 4, 5, 6\
 Tein projektit: 3
+
+## Moduuli 8
+
+Tein tehtävät: 1, 2, 3
+
+## Moduuli 8
+
+Tein tehtävät: 1, 2, 3
