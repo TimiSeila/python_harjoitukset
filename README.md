@@ -56,3 +56,7 @@ Tein tehtävät: 1, 2, 3, 4
 ## Moduuli 11
 
 Tein tehtävät: 1, 2
+
+## Moduuli 12
+
+Tein projektit: 4
