@@ -12,11 +12,17 @@ Game structure
     |   |   ├── max_health
     |   |   ├── health
     |   |   ├── inventory 
-    |   |   └── equipped_weapon 
+    |   |   ├── equipped_weapon
+    |   |   ├── has_strength_effect
+    |   |   └── has_vitality_effect 
     |   └── class Inventory 
     |       ├── coins
     |       ├── owned_weapons 
-    |       └── owned_potions 
+    |       ├── owned_potions
+    |       ├── print()
+    |       ├── add_coins()
+    |       ├── add_weapon()
+    |       └── add_potion() 
     ├── enemy.py
     |   └── class Enemy
     |       ├── name 
@@ -27,7 +33,9 @@ Game structure
     |       └── coin_reward 
     ├── game.py
     |   └── class Game
-    |       └── player
+    |       ├── player
+    |       ├── menu()
+    |       └── travel()
     ├── quest.py
     |   ├── class Quest
     |   |   └── name
@@ -38,6 +46,11 @@ Game structure
     |       ├── name
     |       ├── damage 
     |       └── cost
+    ├── room.py
+    |   └── class Room
+    |       └── name
+    ├── helpers.py
+    |   └── clear_console()
     └── potion.py
         └── class Potion 
             ├── name
