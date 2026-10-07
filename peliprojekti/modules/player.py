@@ -6,3 +6,6 @@ class Player:
         self.inventory = inventory
         self.equipped_weapon = equipped_weapon
         self.has_strength_effect = has_strength_effect
+
+    def replenish_health(self):
+        self.current_health = self.max_health

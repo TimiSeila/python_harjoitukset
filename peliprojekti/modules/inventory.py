@@ -73,7 +73,9 @@ class Inventory:
             return self.equip_weapon(player, main_menu)
 
         if 1 <= int(selection) <= choice_amount:
+            self.owned_weapons.append(player.equipped_weapon)
             player.equipped_weapon = self.owned_weapons[int(selection) - 1]
+            self.owned_weapons.pop(int(selection)- 1)
             return main_menu()
         else:
             clear_console()

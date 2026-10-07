@@ -1,6 +1,5 @@
 import json
 import os
-from modules.player import Player
 
 class SaveSystem:
     def has_save_file(self):
@@ -27,9 +26,29 @@ class SaveSystem:
             },
             "inventory": {
                 "coins": inventory.coins,
-                "owned_weapons": [],
-                "owned_potions": []
+                "owned_weapons": [
+                    {
+                        "name": weapon.name,
+                        "damage": weapon.damage,
+                        "cost": weapon.cost
+                    } for weapon in game.player.inventory.owned_weapons
+                ],
+                "owned_potions": [
+                    {
+                        "name": potion.name,
+                        "cost": potion.cost,
+                        "strength": potion.strength
+                    } for potion in game.player.inventory.owned_potions
+                ]
             },
+            "shop": {
+                "available_weapons": [{
+                    "name": weapon.name,
+                    "damage": weapon.damage,
+                    "cost": weapon.cost
+                } for weapon in game.shop.available_weapons] 
+            },
+            "intro_played": game.intro_played,
             "highest_unlocked_floor": game.highest_unlocked_floor,
             "rooms": [{
                 "name": room.name,
@@ -43,7 +62,8 @@ class SaveSystem:
                     "is_alive": room.enemy.is_alive
                 } if room.enemy else "",
                 "lootable_coins": room.lootable_coins,
-                "lootable_potions": room.lootable_potion
+                "lootable_potions": room.lootable_potion,
+                "intro_played": room.intro_played
             } for room in game.rooms],
             "current_room_index": game.rooms.index(game.current_room)
         }
@@ -54,34 +74,34 @@ class SaveSystem:
     def load_player(self, save_file_path):
         with open(f"save/{save_file_path}", "r") as file:
             data = json.load(file)
-
-            print(data)
             return data["player"]
 
     def load_inventory(self, save_file_path):
         with open(f"save/{save_file_path}", "r") as file:
             data = json.load(file)
-
-            print(data)
             return data["inventory"]
+
+    def load_shop(self, save_file_path):
+        with open(f"save/{save_file_path}", "r") as file:
+            data = json.load(file)
+            return data["shop"]
+
+    def load_intro_played(self, save_file_path):
+        with open(f"save/{save_file_path}", "r") as file:
+            data = json.load(file)
+            return data["intro_played"]
 
     def load_highest_unlocked_floor(self, save_file_path):
         with open(f"save/{save_file_path}", "r") as file:
             data = json.load(file)
-
-            print(data)
             return data["highest_unlocked_floor"]
 
     def load_rooms(self, save_file_path):
         with open(f"save/{save_file_path}", "r") as file:
             data = json.load(file)
-
-            print(data)
             return data["rooms"]
 
     def load_current_room_index(self, save_file_path):
         with open(f"save/{save_file_path}", "r") as file:
             data = json.load(file)
-
-            print(data)
             return data["current_room_index"]

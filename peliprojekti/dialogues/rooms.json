@@ -1,36 +1,36 @@
 {
     "Garbage Room": {
-        "intro": "The door creaks open. The smell hits you immediately.\nPiles of garbage cover the floor, slowly decomposing in the darkness. A strange green mist hangs in the air.",
+        "intro": "The door creaks open. The smell hits you immediately.\n\nPiles of garbage cover the floor, slowly decomposing in the darkness. A strange green mist hangs in the air.",
         "victory": "",
         "loss": ""
     },
     "Storage Room": {
-        "intro": "The storage room is strangely quiet.\nBoxes are stacked from floor to ceiling, but something feels wrong. Every surface is covered in a thin layer of black dust.\nYou hear a deep, rhythmic breathing from behind the shelves.\nA hulking creature emerges, dragging chains of old fuel canisters behind it.\nIt looks at you and clutches its hoard of carbon closer.\nThe Carbon Hoarder blocks your path.",
+        "intro": "The storage room is strangely quiet.\n\nBoxes are stacked from floor to ceiling, but something feels wrong. Every surface is covered in a thin layer of black dust.\n\nYou hear a deep, rhythmic breathing from behind the shelves.\n\nA hulking creature emerges, dragging chains of old fuel canisters behind it.\n\nIt looks at you and clutches its hoard of carbon closer.\n\nThe Carbon Hoarder blocks your path.",
         "victory": "Its carbon hoard crumbles to the floor as the monster lets out one final roar.",
         "loss": "The Carbon Hoarder tightens its grip. You become part of its growing collection."
     },
     "Bathroom": {
-        "intro": "The lights flicker as you enter.\nWater drips from a broken pipe. The sinks overflow, even though nobody is using them."
+        "intro": "The lights flicker as you enter.\n\nWater drips from a broken pipe. The sinks overflow, even though nobody is using them.",
         "victory": "",
         "loss": ""
     },
     "Locker Room": {
-        "intro": "The locker doors slam shut one by one.\nYou stop.\nSomething is breathing heavily on the other side of the room.\nA locker suddenly bursts open.\nA massive creature steps out, its body glowing like burning coal. Smoke pours from its mouth with every breath.\nThe Combustion Brute challenges you.",
+        "intro": "The locker doors slam shut one by one.\n\nYou stop.\n\nSomething is breathing heavily on the other side of the room.\n\nA locker suddenly bursts open.\n\nA massive creature steps out, its body glowing like burning coal. Smoke pours from its mouth with every breath.\n\nThe Combustion Brute challenges you.",
         "victory": "The Brute's flames die out, leaving only a smoking heap on the floor.",
         "loss": "A burst of heat knocks you back. The Brute's flames consume the room."
     },
     "Security Room": {
-        "intro": "The security monitors flash red.\nOne by one, the cameras shut down.\nA low mechanical rumble fills the room.\nFrom behind the security desk rises a towering machine covered in pipes and exhaust vents. Thick smoke pours from its metal body.\nIts red eyes lock onto you.\nThe Diesel Sentinel has identified its next target.",
+        "intro": "The security monitors flash red.\n\nOne by one, the cameras shut down.\n\nA low mechanical rumble fills the room.\n\nFrom behind the security desk rises a towering machine covered in pipes and exhaust vents. Thick smoke pours from its metal body.\n\nIts red eyes lock onto you.\n\nThe Diesel Sentinel has identified its next target.",
         "victory": "The Sentinel sparks and shuts down. The smoke slowly clears.",
         "loss": "The Sentinel's engine roars. Thick exhaust fills the room as your vision fades."
     },
     "Office Room": {
-        "intro": "The office looks abandoned.\nComputers are still running. Lights are still on. Printers hum despite nobody being there.\nThen every screen suddenly goes black.\nSomething crawls across the ceiling.\nA strange creature drops onto the desk, its body glowing brighter as it feeds on the electricity around it.\nThe lights begin to flicker.\nThe Energy Leech is feeding.",
+        "intro": "The office looks abandoned.\n\nComputers are still running. Lights are still on. Printers hum despite nobody being there.\n\nThen every screen suddenly goes black.\n\nSomething crawls across the ceiling.\n\nA strange creature drops onto the desk, its body glowing brighter as it feeds on the electricity around it.\n\nThe lights begin to flicker.\n\nThe Energy Leech is feeding.",
         "victory": "The Leech releases its grip on the power grid and shrivels into darkness.",
         "loss": "The lights flicker out one by one. The Energy Leech drains the last of your strength."
     },
     "Operations Room": {
-        "intro": "You enter the operations room.\nUnlike the other rooms, this one is still running.\nMachines roar. Warning lights flash. Pipes shake under immense pressure.\nAt the center of the room stands a towering creature engulfed in flames and black smoke.\nThe air itself seems to burn around it.\nIt turns toward you.\nThe monitors display a single warning\nCRITICAL CO2 EMISSIONS\nThe creature lets out a deafening roar.\nCARBON INFERNO HAS AWAKENED.\nThis is where the emissions end.\nOr where you do.",
+        "intro": "You enter the operations room.\n\nUnlike the other rooms, this one is still running.\n\nMachines roar. Warning lights flash. Pipes shake under immense pressure.\n\nAt the center of the room stands a towering creature engulfed in flames and black smoke.\n\nThe air itself seems to burn around it.\n\nIt turns toward you.\n\nThe monitors display a single warning\n\nCRITICAL CO2 EMISSIONS\n\nThe creature lets out a deafening roar.\n\nCARBON INFERNO HAS AWAKENED.\n\nThis is where the emissions end.\n\nOr where you do.",
         "victory": "The flames disappear. The machines fall silent. The CO₂ levels begin to drop.",
         "loss": "Carbon Inferno erupts in flames. The alarms scream as the room disappears beneath a cloud of smoke."
     }
