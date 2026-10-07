@@ -1,3 +1,4 @@
+import json
 from modules.player import Player
 from modules.room import Room
 from modules.helpers import clear_console
@@ -13,12 +14,14 @@ class Game:
         if self.save_system.has_save_file():
             player_save_data = self.save_system.load_player("save.json")
             inventory_save_data = self.save_system.load_inventory("save.json")
+            intro_played_save_data = self.save_system.load_intro_played("save.json")
             highest_unlocked_floor_save_data = self.save_system.load_highest_unlocked_floor("save.json")
             room_save_data = self.save_system.load_rooms("save.json")
             current_room_index_save_data = self.save_system.load_current_room_index("save.json")
         else:
             player_save_data = self.save_system.load_player("initial_state.json")
             inventory_save_data = self.save_system.load_inventory("initial_state.json")
+            intro_played_save_data = self.save_system.load_intro_played("initial_state.json")
             highest_unlocked_floor_save_data = self.save_system.load_highest_unlocked_floor("initial_state.json")
             room_save_data = self.save_system.load_rooms("initial_state.json")
             current_room_index_save_data = self.save_system.load_current_room_index("initial_state.json")
@@ -48,6 +51,7 @@ class Game:
         )
 
         # Initialize game from save data
+        self.intro_played = intro_played_save_data
         self.highest_unlocked_floor = highest_unlocked_floor_save_data
 #       ]
         self.rooms = [
@@ -63,10 +67,23 @@ class Game:
                     room["enemy"]["is_alive"]
                 ) if room["enemy"] else None,
                 room["lootable_coins"],
-                StrengthPotion() if room["lootable_potions"] else None
+                StrengthPotion() if room["lootable_potions"] else None,
+                room["intro_played"]
             ) for room in room_save_data
         ]
         self.current_room = self.rooms[current_room_index_save_data]
+
+    def start(self):
+        if self.intro_played is False:
+            with open(f"dialogues/intro.json", "r") as file:
+                data = json.load(file)
+                for text in data["intro_texts"]:
+                    clear_console()
+                    print(text)
+                    input("Press enter to continue...")
+            self.intro_played = True
+
+        self.menu()
 
     def menu(self):
         clear_console()
@@ -86,7 +103,7 @@ class Game:
 
         match selection:
             case "1":
-                self.travel(self.menu)
+                self.travel_menu(self.menu)
             case "2":
                 self.current_room.loot(self.player.inventory, self.menu)
             case "3":
@@ -100,7 +117,7 @@ class Game:
                 input("Press enter to continue...")
                 self.menu()
 
-    def travel(self, main_menu):
+    def travel_menu(self, main_menu):
         clear_console()
 
         choice_amount = 0
@@ -124,11 +141,27 @@ class Game:
             return main_menu()
 
         if 1 <= int(selection) <= choice_amount:
-            self.current_room = self.rooms[int(selection) - 1]
+            if self.rooms[int(selection) - 1].travel_successful(self.player):
+                self.current_room = self.rooms[int(selection) - 1]
+                if self.is_floor_cleared(self.highest_unlocked_floor):
+                    if self.highest_unlocked_floor == 3:
+                        print("You won the game!")
+                        return
+                    clear_console()
+                    self.highest_unlocked_floor += 1
+                    print(f"You have unlocked floor {self.highest_unlocked_floor}")
+                    input("Press space to continue...")
             return main_menu()
         else:
             clear_console()
             print("Invalid room selection")
             input("Press enter to continue...")
             return main_menu()
+
+    def is_floor_cleared(self, floor):
+        for room in self.rooms:
+            if room.floor == floor and room.enemy:
+                if room.enemy.is_alive:
+                    return False
+        return True
 

@@ -15,6 +15,7 @@
         "owned_weapons": [],
         "owned_potions": []
     },
+    "intro_played": false,
     "highest_unlocked_floor": 1,
     "rooms": [
         {
@@ -22,7 +23,8 @@
             "floor": 1,
             "enemy": "",
             "lootable_coins": 10,
-            "lootable_potions": ""
+            "lootable_potions": "",
+            "intro_played": false
         },
         {
             "name": "Storage Room",
@@ -36,14 +38,16 @@
                 "is_alive": true
             },
             "lootable_coins": 10,
-            "lootable_potions": ""
+            "lootable_potions": "",
+            "intro_played": false
         },
         {
             "name": "Bathroom",
             "floor": 1,
             "enemy": "",
             "lootable_coins": 10,
-            "lootable_potions": ""
+            "lootable_potions": "",
+            "intro_played": false
         },
         {
             "name": "Locker Room",
@@ -57,7 +61,8 @@
                 "is_alive": true
             },
             "lootable_coins": 10,
-            "lootable_potions": ""
+            "lootable_potions": "",
+            "intro_played": false
         },
         {
             "name": "Security Room",
@@ -71,7 +76,8 @@
                 "is_alive": true
             },
             "lootable_coins": 10,
-            "lootable_potions": ""
+            "lootable_potions": "",
+            "intro_played": false
         },
         {
             "name": "Office Room",
@@ -84,14 +90,15 @@
                 "coin_reward": 10,
                 "is_alive": true
             },    
-        "lootable_coins": 10,
-            "lootable_potions": ""
+            "lootable_coins": 10,
+            "lootable_potions": "",
+            "intro_played": false
         },
         {
             "name": "Operations Room",
             "floor": 3,
             "enemy": {
-                "name": "Nuclera Inferno",
+                "name": "Nuclear Inferno",
                 "max_health": 100,
                 "attack_power": 10,
                 "co2_emissions": 10,
@@ -99,7 +106,8 @@
                 "is_alive": true
             },
             "lootable_coins": 10,
-            "lootable_potions": ""
+            "lootable_potions": "",
+            "intro_played": false
         }
     ],
     "current_room_index": 0
