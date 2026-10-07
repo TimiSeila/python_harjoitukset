@@ -6,6 +6,7 @@ from modules.potion import StrengthPotion
 from modules.enemy import Enemy
 from modules.save import SaveSystem
 from modules.inventory import Inventory
+from modules.shop import Shop
 
 class Game:
     def __init__(self):
@@ -47,6 +48,9 @@ class Game:
             player_save_data["has_strength_effect"],
         )
 
+        # Initialize shop from save data
+        self.shop = Shop()
+
         # Initialize game from save data
         self.highest_unlocked_floor = highest_unlocked_floor_save_data
 #       ]
@@ -80,7 +84,8 @@ class Game:
         print("1. Travel")
         print("2. Loot the room")
         print("3. Inventory")
-        print("4. Save and Quit")
+        print("4. Shop")
+        print("5. Save and Quit")
 
         selection = input()
 
@@ -92,6 +97,8 @@ class Game:
             case "3":
                 self.player.inventory.print(self.player, self.menu)
             case "4":
+                self.shop.print(self.player, self.menu)
+            case "5":
                 self.save_system.save(self)
                 print()
             case _:
