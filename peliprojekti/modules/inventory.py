@@ -1,16 +1,18 @@
 from modules.helpers import clear_console
 
 class Inventory:
-    def __init__(self):
-        self.coins = 100
-        self.owned_weapons = []
-        self.owned_potions = []
+    def __init__(self, coins, owned_weapons, owned_potions):
+        self.coins = coins
+        self.owned_weapons = owned_weapons
+        self.owned_potions = owned_potions
 
-    def print(self):
+    def print(self, player, main_menu):
         clear_console()
+        print(f"Coins: {self.coins}")
         if len(self.owned_weapons) == 0 and len(self.owned_potions) == 0:
             print("Nothing in inventory")
-            return
+            input("Press enter to continue...")
+            return main_menu()
 
         print("Weapons:")
         for index, weapon in enumerate(self.owned_weapons):
@@ -29,17 +31,20 @@ class Inventory:
 
         match selection:
             case "1":
-                # TODO
-                print()
+                self.equip_weapon(player, main_menu)
             case "2":
-                # TODO
-                print()
+                self.consume_potion(player, main_menu)
             case "3":
-                return
+                return main_menu()
+            case _:
+                clear_console()
+                print("Invalid selection")
+                input("Press enter to continue...")
+                self.print(player, main_menu)
 
     def add_coins(self, coins):
         self.coins += coins
-        print(f"Received {coins} coins")
+        print(f"Added {coins} coins to inventory")
 
     def add_weapon(self, weapon):
         self.owned_weapons.append(weapon)
@@ -49,3 +54,62 @@ class Inventory:
         self.owned_potions.append(potion)
         print(f"Added {potion.name} to inventory")
 
+    def equip_weapon(self, player, main_menu):
+        clear_console()
+        choice_amount = 0
+        print("Which weapon would you like to equip?")
+        for index, weapon in enumerate(self.owned_weapons):
+            choice_amount += 1
+            print(f"{index + 1}. {weapon.name}")
+
+        selection = input()
+
+        try:
+            int(selection)
+        except:
+            clear_console()
+            print("Invalid selection")
+            input("Press enter to continue...")
+            return self.equip_weapon(player, main_menu)
+
+        if 1 <= int(selection) <= choice_amount:
+            player.equipped_weapon = self.owned_weapons[int(selection) - 1]
+            return main_menu()
+        else:
+            clear_console()
+            print("Invalid selection")
+            input("Press enter to continue...")
+            return self.equip_weapon(player, main_menu)
+
+    def consume_potion(self, player, main_menu):
+        clear_console()
+        choice_amount = 0
+        print("Which potion would you like to consume?")
+        for index, potion in enumerate(self.owned_potions):
+            choice_amount += 1
+            print(f"{index + 1}. {potion.name}")
+
+        selection = input()
+
+        try:
+            int(selection)
+        except:
+            clear_console()
+            print("Invalid selection")
+            input("Press enter to continue...")
+            return self.consume_potion(player, main_menu)
+
+        if 1 <= int(selection) <= choice_amount:
+            selection_name = self.owned_potions[int(selection) - 1].name
+            if selection_name == "Strength Potion":
+                player.has_strength_effect = True
+                self.owned_potions.pop(int(selection) - 1)
+            elif selection_name == "Vitality Potion":
+                player.has_vitality_effect = True
+                self.owned_potions.pop(int(selection) - 1)
+            return main_menu()
+        else:
+            clear_console()
+            print("Invalid selection")
+            input("Press enter to continue...")
+            return self.consume_potion(player, main_menu)

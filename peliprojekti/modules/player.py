@@ -1,12 +1,8 @@
-from modules.inventory import Inventory
-from modules.weapon import Weapon
-
 class Player:
-    def __init__(self, name, max_health):
+    def __init__(self, name, max_health, current_health, inventory, equipped_weapon, has_strength_effect):
         self.name = name
         self.max_health = max_health
-        self.health = max_health
-        self.inventory = Inventory()
-        self.equipped_weapon = Weapon("Wooden Sword", 12, 10)
-        self.has_strength_effect = false
-        self.has_vitality_effect = false
+        self.current_health = current_health
+        self.inventory = inventory
+        self.equipped_weapon = equipped_weapon
+        self.has_strength_effect = has_strength_effect
