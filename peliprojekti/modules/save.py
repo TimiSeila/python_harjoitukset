@@ -15,6 +15,7 @@ class SaveSystem:
         data = {
             "player": {
                 "name": player.name,
+                "age": player.age,
                 "max_health": player.max_health,
                 "current_health": player.current_health,
                 "equipped_weapon": {
@@ -46,7 +47,7 @@ class SaveSystem:
                     "name": weapon.name,
                     "damage": weapon.damage,
                     "cost": weapon.cost
-                } for weapon in game.shop.available_weapons] 
+                } for weapon in game.shop.available_weapons]
             },
             "intro_played": game.intro_played,
             "highest_unlocked_floor": game.highest_unlocked_floor,
@@ -57,7 +58,6 @@ class SaveSystem:
                     "name": room.enemy.name,
                     "max_health": room.enemy.max_health,
                     "attack_power": room.enemy.attack_power,
-                    "co2_emissions": room.enemy.co2_emissions,
                     "coin_reward": room.enemy.coin_reward,
                     "is_alive": room.enemy.is_alive
                 } if room.enemy else "",

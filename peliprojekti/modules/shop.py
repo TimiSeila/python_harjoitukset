@@ -1,5 +1,5 @@
 from modules.weapon import Weapon
-from modules.helpers import clear_console
+from modules.helpers import clear_console, enter_break, invalid_selection
 from modules.potion import StrengthPotion
 
 class Shop:
@@ -21,10 +21,7 @@ class Shop:
             case "2":
                 self.print_potions(player, main_menu)
             case _:
-                clear_console()
-                print("Invalid selection")
-                input("Press enter to continue...")
-                return main_menu()
+                return invalid_selection(main_menu)
 
     def print_weapons(self, player, main_menu):
         clear_console()
@@ -41,18 +38,12 @@ class Shop:
         try:
             int(selection)
         except:
-            clear_console()
-            print("Invalid selection")
-            input("Press enter to continue...")
-            return main_menu()
+            return invalid_selection(main_menu)
 
         if 1 <= int(selection) <= choice_amount:
             self.buy_weapon(int(selection) - 1, player, main_menu)
         else:
-            clear_console()
-            print("Invalid selection")
-            input("Press enter to continue...")
-            return main_menu()
+            return invalid_selection(main_menu)
 
     def print_potions(self, player, main_menu):
         clear_console()
@@ -69,18 +60,12 @@ class Shop:
         try:
             int(selection)
         except:
-            clear_console()
-            print("Invalid selection")
-            input("Press enter to continue...")
-            return main_menu()
+            return invalid_selection(main_menu)
 
         if 1 <= int(selection) <= choice_amount:
             self.buy_potion(player, main_menu)
         else:
-            clear_console()
-            print("Invalid selection")
-            input("Press enter to continue...")
-            return main_menu()
+            return invalid_selection(main_menu)
         
 
     def buy_weapon(self, index, player, main_menu):
@@ -88,7 +73,7 @@ class Shop:
 
         if weapon.cost > player.inventory.coins:
             print("Not enough coins")
-            input("Press enter to continue...")
+            enter_break()
             return main_menu()
 
         player.inventory.coins -= weapon.cost
@@ -101,7 +86,7 @@ class Shop:
 
         if potion.cost > player.inventory.coins:
             print("Not enough coins")
-            input("Press enter to continue...")
+            enter_break()
             return main_menu()
 
         player.inventory.coins -= potion.cost

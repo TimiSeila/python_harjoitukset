@@ -1,7 +1,7 @@
 import json
 from modules.player import Player
 from modules.room import Room
-from modules.helpers import clear_console
+from modules.helpers import clear_console, enter_break, invalid_selection
 from modules.weapon import Weapon
 from modules.potion import StrengthPotion
 from modules.enemy import Enemy
@@ -32,6 +32,7 @@ class Game:
         # Initialize player from save data
         self.player = Player(
             player_save_data["name"],
+            player_save_data["age"],
             player_save_data["max_health"],
             player_save_data["current_health"],
             Inventory(
@@ -71,7 +72,6 @@ class Game:
                     room["enemy"]["name"],
                     room["enemy"]["max_health"],
                     room["enemy"]["attack_power"],
-                    room["enemy"]["co2_emissions"],
                     room["enemy"]["coin_reward"],
                     room["enemy"]["is_alive"]
                 ) if room["enemy"] else None,
@@ -84,15 +84,31 @@ class Game:
 
     def start(self):
         if self.intro_played is False:
+            self.player.name = input("What is your name?: ")
+            age = input("What is your age?: ")
+            try:
+                int(age)
+                self.player.age = int(age)
+            except:
+                print("Invalid age")
+                return self.start()
             with open(f"dialogues/intro.json", "r") as file:
                 data = json.load(file)
                 for text in data["intro_texts"]:
                     clear_console()
                     print(text)
-                    input("Press enter to continue...")
+                    enter_break()
             self.intro_played = True
 
         self.menu()
+
+    def end(self):
+        with open("dialogues/ending.json", "r") as file:
+            data = json.load(file)
+            for text in data["ending_texts"]:
+                clear_console()
+                print(text)
+                enter_break()
 
     def menu(self):
         clear_console()
@@ -124,10 +140,7 @@ class Game:
                 self.save_system.save(self)
                 print()
             case _:
-                clear_console()
-                print("Invalid selection")
-                input("Press enter to continue...")
-                self.menu()
+                return invalid_selection(self.menu)
 
     def travel_menu(self, main_menu):
         clear_console()
@@ -147,28 +160,21 @@ class Game:
         try:
             int(selection)
         except:
-            clear_console()
-            print("Invalid room selection")
-            input("Press enter to continue...")
-            return main_menu()
+            return invalid_selection(lambda: self.travel_menu(main_menu))
 
         if 1 <= int(selection) <= choice_amount:
             if self.rooms[int(selection) - 1].travel_successful(self.player):
                 self.current_room = self.rooms[int(selection) - 1]
                 if self.is_floor_cleared(self.highest_unlocked_floor):
                     if self.highest_unlocked_floor == 3:
-                        print("You won the game!")
-                        return
+                        return self.end()
                     clear_console()
                     self.highest_unlocked_floor += 1
                     print(f"You have unlocked floor {self.highest_unlocked_floor}")
-                    input("Press space to continue...")
+                    enter_break()
             return main_menu()
         else:
-            clear_console()
-            print("Invalid room selection")
-            input("Press enter to continue...")
-            return main_menu()
+            return invalid_selection(lambda: self.travel_menu(main_menu))
 
     def is_floor_cleared(self, floor):
         for room in self.rooms:

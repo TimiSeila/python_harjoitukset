@@ -1,4 +1,4 @@
-from modules.helpers import clear_console
+from modules.helpers import clear_console, enter_break, invalid_selection
 
 class Inventory:
     def __init__(self, coins, owned_weapons, owned_potions):
@@ -11,7 +11,7 @@ class Inventory:
         print(f"Coins: {self.coins}")
         if len(self.owned_weapons) == 0 and len(self.owned_potions) == 0:
             print("Nothing in inventory")
-            input("Press enter to continue...")
+            enter_break()
             return main_menu()
 
         print("Weapons:")
@@ -37,10 +37,7 @@ class Inventory:
             case "3":
                 return main_menu()
             case _:
-                clear_console()
-                print("Invalid selection")
-                input("Press enter to continue...")
-                self.print(player, main_menu)
+                return invalid_selection(lambda: self.print(player, main_menu))
 
     def add_coins(self, coins):
         self.coins += coins
@@ -67,10 +64,7 @@ class Inventory:
         try:
             int(selection)
         except:
-            clear_console()
-            print("Invalid selection")
-            input("Press enter to continue...")
-            return self.equip_weapon(player, main_menu)
+            return invalid_selection(lambda: self.equip_weapon(player, main_menu))
 
         if 1 <= int(selection) <= choice_amount:
             self.owned_weapons.append(player.equipped_weapon)
@@ -78,10 +72,8 @@ class Inventory:
             self.owned_weapons.pop(int(selection)- 1)
             return main_menu()
         else:
-            clear_console()
-            print("Invalid selection")
-            input("Press enter to continue...")
-            return self.equip_weapon(player, main_menu)
+            return invalid_selection(lambda: self.equip_weapon(player, main_menu))
+
 
     def consume_potion(self, player, main_menu):
         clear_console()
@@ -96,10 +88,7 @@ class Inventory:
         try:
             int(selection)
         except:
-            clear_console()
-            print("Invalid selection")
-            input("Press enter to continue...")
-            return self.consume_potion(player, main_menu)
+            return invalid_selection(lambda: self.consume_potion(player, main_menu))
 
         if 1 <= int(selection) <= choice_amount:
             selection_name = self.owned_potions[int(selection) - 1].name
@@ -111,7 +100,4 @@ class Inventory:
                 self.owned_potions.pop(int(selection) - 1)
             return main_menu()
         else:
-            clear_console()
-            print("Invalid selection")
-            input("Press enter to continue...")
-            return self.consume_potion(player, main_menu)
+            invalid_selection(lambda: self.consume_potion(player, main_menu))

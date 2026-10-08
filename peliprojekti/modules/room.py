@@ -1,6 +1,6 @@
 import json
 import time
-from modules.helpers import clear_console
+from modules.helpers import clear_console, enter_break
 
 class Room():
     def __init__(self, name, floor, enemy, lootable_coins, lootable_potion, intro_played):
@@ -20,7 +20,7 @@ class Room():
         clear_console()
         if self.intro_played is False:
             print(self.room_dialogue_data["intro"])
-            input("Press enter to continue...")
+            enter_break()
         if self.enemy and self.enemy.is_alive is True:
             return self.battle_loop(player)
         else:
@@ -40,7 +40,7 @@ class Room():
         print(f"Health: {self.enemy.max_health}")
         print(f"Attack Power: {self.enemy.attack_power}")
 
-        input("Press enter to battle...")
+        enter_break()
 
         clear_console()
         self.enemy.current_health = self.enemy.max_health
@@ -50,8 +50,8 @@ class Room():
             self.enemy.current_health -= player.equipped_weapon.damage + player_damage_boost
             print(f"You deal {player.equipped_weapon.damage + player_damage_boost} damage to {self.enemy.name}")
 
-            print(f"Your health: {player.current_health}")
-            print(f"Enemy health: {self.enemy.current_health}")
+            print(f"Your health: {player.current_health if player.current_health > 0 else 0}")
+            print(f"Enemy health: {self.enemy.current_health if self.enemy.current_health > 0 else 0}")
 
             if self.enemy.current_health <= 0:
                 print(self.room_dialogue_data["victory"])
@@ -61,21 +61,21 @@ class Room():
                 player.has_strength_effect = False
                 player.replenish_health()
                 player.inventory.add_coins(self.enemy.coin_reward)
-                input("Press enter to continue...")
+                enter_break()
                 return True
 
             player.current_health -= self.enemy.attack_power
             print(f"{self.enemy.name} deals {self.enemy.attack_power} damage to you")
 
-            print(f"Your health: {player.current_health}")
-            print(f"Enemy health: {self.enemy.current_health}")
+            print(f"Your health: {player.current_health if player.current_health > 0 else 0}")
+            print(f"Enemy health: {self.enemy.current_health if self.enemy.current_health > 0 else 0}")
 
             if player.current_health <= 0:
                 print(self.room_dialogue_data["loss"])
                 print(f"You have been defeated by {self.enemy.name}")
                 player.has_strength_effect = False
                 player.replenish_health()
-                input("Press enter to continue...")
+                enter_break()
                 return False
 
         self.enemy.is_alive = False
@@ -96,6 +96,6 @@ class Room():
             inventory.add_potion(self.lootable_potion)
             self.lootable_potion = None
 
-        input("Press any key to continue...")
+        enter_break()
         main_menu()
 

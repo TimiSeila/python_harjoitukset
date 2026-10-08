@@ -1,6 +1,7 @@
 {
     "player": {
         "name": "",
+        "age": 0,
         "max_health": 100,
         "current_health": 100,
         "equipped_weapon": {
@@ -47,7 +48,6 @@
                 "name": "Carbon Hoarder",
                 "max_health": 100,
                 "attack_power": 10,
-                "co2_emissions": 10,
                 "coin_reward": 10,
                 "is_alive": true
             },
@@ -70,7 +70,6 @@
                 "name": "Combustion Brute",
                 "max_health": 100,
                 "attack_power": 10,
-                "co2_emissions": 10,
                 "coin_reward": 10,
                 "is_alive": true
             },
@@ -85,7 +84,6 @@
                 "name": "Diesel Sentinel",
                 "max_health": 100,
                 "attack_power": 10,
-                "co2_emissions": 10,
                 "coin_reward": 10,
                 "is_alive": true
             },
@@ -100,7 +98,6 @@
                 "name": "Energy Leech",
                 "max_health": 100,
                 "attack_power": 10,
-                "co2_emissions": 10,
                 "coin_reward": 10,
                 "is_alive": true
             },    
@@ -115,7 +112,6 @@
                 "name": "Nuclear Inferno",
                 "max_health": 100,
                 "attack_power": 10,
-                "co2_emissions": 10,
                 "coin_reward": 10,
                 "is_alive": true
             },
