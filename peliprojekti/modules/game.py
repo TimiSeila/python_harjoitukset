@@ -13,6 +13,7 @@ class Game:
     def __init__(self):
         self.save_system = SaveSystem()
         if self.save_system.has_save_file():
+            # Read from save file
             player_save_data = self.save_system.load_player("save.json")
             inventory_save_data = self.save_system.load_inventory("save.json")
             shop_save_data = self.save_system.load_shop("save.json")
@@ -21,6 +22,7 @@ class Game:
             room_save_data = self.save_system.load_rooms("save.json")
             current_room_index_save_data = self.save_system.load_current_room_index("save.json")
         else:
+            # Read from initial state
             player_save_data = self.save_system.load_player("initial_state.json")
             inventory_save_data = self.save_system.load_inventory("initial_state.json")
             shop_save_data = self.save_system.load_shop("initial_state.json")
