@@ -12,6 +12,7 @@ class Shop:
         print("What would you like to buy?")
         print("1. Weapons")
         print("2. Potions")
+        print("3. Exit shop")
 
         selection = input()
 
@@ -20,6 +21,8 @@ class Shop:
                 self.print_weapons(player, main_menu)
             case "2":
                 self.print_potions(player, main_menu)
+            case "3":
+                return main_menu()
             case _:
                 return invalid_selection(main_menu)
 
@@ -33,6 +36,8 @@ class Shop:
             print(f"{index + 1}. {weapon.name}")
             print(f"Damage: {weapon.damage}, Cost: {weapon.cost}")
 
+        print(f"{choice_amount + 1}. Go back")
+
         selection = input()
 
         try:
@@ -42,6 +47,8 @@ class Shop:
 
         if 1 <= int(selection) <= choice_amount:
             self.buy_weapon(int(selection) - 1, player, main_menu)
+        elif int(selection) == choice_amount + 1:
+            return self.print(player, main_menu)
         else:
             return invalid_selection(main_menu)
 
@@ -55,6 +62,8 @@ class Shop:
             print(f"{index + 1}. {potion.name}")
             print(f"Strength: {potion.strength}, Cost: {potion.cost}")
 
+        print(f"{choice_amount + 1}. Go back")
+
         selection = input()
 
         try:
@@ -64,9 +73,10 @@ class Shop:
 
         if 1 <= int(selection) <= choice_amount:
             self.buy_potion(player, main_menu)
+        elif int(selection) == choice_amount + 1:
+            return self.print(player, main_menu)
         else:
             return invalid_selection(main_menu)
-        
 
     def buy_weapon(self, index, player, main_menu):
         weapon = self.available_weapons[index]

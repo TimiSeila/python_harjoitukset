@@ -59,6 +59,8 @@ class Inventory:
             choice_amount += 1
             print(f"{index + 1}. {weapon.name}")
 
+        print(f"{choice_amount + 1}. Go back")
+
         selection = input()
 
         try:
@@ -69,8 +71,10 @@ class Inventory:
         if 1 <= int(selection) <= choice_amount:
             self.owned_weapons.append(player.equipped_weapon)
             player.equipped_weapon = self.owned_weapons[int(selection) - 1]
-            self.owned_weapons.pop(int(selection)- 1)
+            self.owned_weapons.pop(int(selection) - 1)
             return main_menu()
+        elif int(selection) == choice_amount + 1:
+            return self.print(player, main_menu)
         else:
             return invalid_selection(lambda: self.equip_weapon(player, main_menu))
 
@@ -83,6 +87,8 @@ class Inventory:
             choice_amount += 1
             print(f"{index + 1}. {potion.name}")
 
+        print(f"{choice_amount + 1}. Go back")
+
         selection = input()
 
         try:
@@ -92,12 +98,10 @@ class Inventory:
 
         if 1 <= int(selection) <= choice_amount:
             selection_name = self.owned_potions[int(selection) - 1].name
-            if selection_name == "Strength Potion":
-                player.has_strength_effect = True
-                self.owned_potions.pop(int(selection) - 1)
-            elif selection_name == "Vitality Potion":
-                player.has_vitality_effect = True
-                self.owned_potions.pop(int(selection) - 1)
+            player.has_strength_effect = True
+            self.owned_potions.pop(int(selection) - 1)
             return main_menu()
+        elif int(selection) == choice_amount + 1:
+            return self.print(player, main_menu)
         else:
             invalid_selection(lambda: self.consume_potion(player, main_menu))
