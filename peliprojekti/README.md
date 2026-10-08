@@ -2,8 +2,20 @@
 
 # Timi Seila
 
+## Pelin idea
+Olet monsteritaistelija joka on saanut tehtäväkseen tarkistaa rakennus josta on havaittu suuria hiilidioksidi päästöjä
+
+## Pelin tavoite
+Tutki rakennus ja poista liiallisen hiilidioksidin aiheuttaja
+
+## Toimintaperiaate
+Taistelet hiilidioksidia päästäviä monstereita vastaan ja etenet rakennuksessa kunnes olet päihittänyt jokaisen monsterin. Sinulla on ase ja taikajuomia jotka auttavat taistelussa. Aseita ja juomia voi ostaa kaupasta kolikoilla joita saat päihittämällä monstereita tai löytämällä huoneista. Pääset etenemään seuraavaan kerrokseen kun olet päihittänyt kaikki monsterit nykyisessä kerroksessa.
+
+## Kestävä kehitys
+Kestävä kehitys on otettu huomioon vähentämällä hiilidioksidi päästöjä
+
 ```text
-Game structure
+Pelin rakenne
 ├── main.py
 └── modules
     ├── player.py
@@ -94,3 +106,4 @@ Game structure
             ├── cost
             └── strength
 ```
+dialogit generoitu tekoälyllä
